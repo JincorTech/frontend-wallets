@@ -11,18 +11,21 @@ cache:
 install:
 - yarn
 script:
-- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod";
-  else echo "stage"
-  ; fi`
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [ "$TRAVIS_BRANCH"
-  == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
-  ; fi`
+- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod"; else echo
+  "stage" ; fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [
+  "$TRAVIS_BRANCH" == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse
+  --short HEAD)" ; fi`
 - docker build --no-cache -t jincort/frontend-wallets-develop:${TAG} .
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} cp -r .env.${ENV_FILE} .env
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn build
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn run lint
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn run test:CI
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} cp
+  -r .env.${ENV_FILE} .env
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
+  build
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
+  run lint
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
+  run test:CI
 after_success:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif  "$TRAVIS_BRANCH"
   == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
@@ -33,8 +36,8 @@ after_success:
 - docker push jincort/frontend-wallets:${TAG}
 notifications:
   slack:
-    secure: BwOGI5vLZ0nkbCGTPLBdUT4CH+P7eNPp4BvZBgkkPuZarIgwzViXeqCYsfTcyQ2/8grY3PWEBbX3UtKso+bysH6m/P2B3r0dRRxC21YEQa9g/u+hK+yvDRRtn3ZDAutw0RQAwX8xtXSb+yh2sT18ws9+WLFgmy9GS81WwXa6cf6V6GZZdE4Vt9MKroDIHpu/MPHeeQRn5I08RzqshujvIpEpjic7w0SdBKbdTjmBt0jkWRXd3UtWVEuEI2UDkrFMhX/mdiqtgeMU2h4vT/vuuAPsvDurJ8JkubPd3UFjePoCLlgZvhmTI6zO+RREQxwSfrtg763JFZonKYCoTwSz/2Q2I4WMR97HBwWi2e07shcwmwr6gWEi6dKPysRFmgHfqAcF72mT2trKFObGbEmm6JMxAsi628o/aktTojdbyfNJ3lnUwWDXjo8lSPaxAyrY1wUkDlyeTwhiKQoXUS2up/hH/Mz/CBmW3rJqzW4ypVSckVMEybC7sFqhd/6aIlG7UxfetUwRZ6cXyryryq7iiqiIDN9dxt6EpDgiWICkANq+b8MRQfJMBZcBQC391mN5X9EzxTjVShvs1+nSvX95es/QIs2D4lICQ5jruA+t4GgiDVuPvwYBq+HJxJmAylhdPA7g5iZTPi17UHWcfS2gC7TldTv3I41YCoh4CYKd5pY=
+    secure: mpvcu6u1+cstyt0yPqyDqMRePWJjCEbHsBfe86e/Qv4LUAmOAavXG83LDyL7+SA331Qb4H1GdIwyBMsfG02hqmWarOk/EKTYnoTzzipiO+RS6M+y2kc1cRVq8l3f5l4WiaPVH7uSR4Nu74YPIZaIqFdfmSSu2iYl0Hq6hUumfg9bMmany9qSiTqATGksUFp5b2vGU5GI474QYBckGinuJ3uBiWUR16sPfhHQ7Ge80HYXIneQeYoybINKOzY8EnNL3qZ9zvWc8qtk2OIpGSqitz+1lBiloWFB58sm7S1Uf/z4B5DJHl5ws/zWSNBTyvGkXJbq0mORzgMtR4QUxXu9DIveyRJBfrS7beWV9Z6bYJ76z0s53O/kj425JQxjkQmxw7oGocNKKeS6060t+b4n501DZbh7MWxBEQKuq20spGfchRsKdJqBEEAKHw967PhFTTJNpbOzUIiMkYOofMoef55VNnCxHZ683BE8i4TnfEKgeKsMQQ95DtxxdbR6qXwOtUsba7zycxN2WrEKZOi/nrebJeHUwQBEGuIDenNup4PQnwHDmWok8Uq8nKMY37UceRUxbNiW86DyYUWoHI6yHSEQRrq9O1JV5+rMCoxfV6cwoiWGZLokD2LPNyT0/q1bk3hFImr99a+rpMmTn2NDARSP8oSRn46dskc8mGUm8lc=
 env:
   global:
-  - secure: ggjzSXKOAnZvCul+A4AbK997NhFQF8KD52dQbcBCIsU/nxUBSeSK6rcF2WKkDbTAW7pqUIjkZmWaF283k4jStKUX2yAOhnk+MG7wdmTMel3eXSpv+VS/h97Ewum+rUDv/vkw+7GC85c2fTLu161tm8mpudpdj2of6Moew4oRbBBSqpHHTg43HMdCXEphsU5qhtqKg2jX9tCGcvrp/rAY1qHd7nPo51UlOFQkQtODsH3XHTMO+qOjf+9Awn05GLphS6aO35f54RK1gISStBe0U/0jjM+/iijuhuaNCoeNIuIiO5rXX6dac31NtTJvsWkaiuJJXSJQfdSAeBSbn11jpW6P/T8rSn4TjjecmVOzwlyZRbxL47NQfqXcwyRGK8R7UN2PGDvfsN/OiC4Og55MQ6l+zcXgzbSsGwgp0byeDdCxE3Nrvgc4pHwPc4WKcAsoe3BMyQd4hY/tSIECVI5f18D34QdsPTwto+w1rLxc9jgvJeL8X/hF8h4kMYLwbthhYVAaQOrL/IhcJ7RzVWrkmHj+bm4ORGBI4d+CMa3srzcs7AVvvU4iDu4WV5E23OnD5p0UaFnRzE4sW1+7m18ZuNQr6qIxnWhcoDGOIvGhP3j5CSTYMMVxSLSyvJTwRWjDM+sbs1g/UdEjYSPHdsQHiAc0eGeHGKnUb+HCZqHiW+s=
-  - secure: J8anqNHYD6CWR2k07c8XwuG6ksMu5LmtyqdjDeXzezaRO/bgSeEIhj02sQJ3BFR3LdbO552X8Jo38izIcgOMcat2rGtQtxdM3FKB0F4plqpye/QGZCs7xSQJoRd5pUeXvChaxU5oZvlDUrt7kWYVldMhVyyK0JpjNTA6xCGMfU7Ip458wtZJPtLUJtqxm/vWcqqrsZ1ps8SYkNil6fR7S5uoZALuqkGULRgk4UOciHrTz9DTmj6nn1mb+FGfDOUtjiwNcPCSVHRwLOZhH9D1IG9RseUkh74F2u2Mj5pmHfril6ECq7M9S8veKAtmPUIn9Nv3s2+Jur/zL/zg029qJjX8soxtilPPwo7R2zkyaxuVIagXPxksRTPt5uxJ+BvsqatdYH2/ex1a1UbYNV7OFe1q4h+jsw1BYa9YVis00Mn0/cLcFL1JG/auoaSh5nPxkX9fZrhvQx/vY00spgT/Qu36iij3OVxD5fjQAGqTrxuIv+gw6vT5OisSw05DP7bi8kafVsja6CTlVAryWxLlOneos/93NNTYveyJT9sEWJugVxGOJegLHcLH75u/V0iGeW9L/p+ypmTyC8nKPFzrIg/VVOwbgK3Teb5Evy4HGIBblzirrdB7kOMNsL5NWrz2E/HLKAL39F7gp/NgLU0VVpd0H5AlQufIMN4R8D9j4NQ=
+  - secure: Da038nwGxpo2ojvOIwh+uJMLfJTZEnauOvDNcaCWryztgAbBD8f1F7wRb5qZGLmmGkFTbvhmBmjJ22vbyPtp9JSZsE0RIoTILBwwZ7Nswb69MkyIacClih+Ancr1qd0VsuXmYKVtdUCb0putWIJdp0f4ZJqXF0B2WUNKBV4tF78zdCoKHrg036h8m7hPtxoW9ZMO2GH7GLYN47ucP6LC54zywvlLYP9r4pHu0AeyAS0FAfsTnEbtKdMie1yqzMmu+faXzhQSL/UVievLEsDLYoMaz+E+oxx9c9rNbDgywTEZ3zl2Y8wuGrWcTY2i4vhLyhkrySJ9DeoKum+/G3NcGusqAHggJqO7YFU7uKbvrXrd9oUQj5M0b0Wnk6FY9D4+fRcDuZIcr5pKdHUhR4MFZST3dzI5bsSpCjBvrrzoqmN6irOV4a6o+yNGPyf0OshXFCHLJM6G3EQK6ZTxJWLq3nDz/YDFspx77cyeR4jnpwITE6teT0j1mpNQVS5Kjhdz9EzOHh3itJSbiyCZ54WpDZAjipPQFXhoS+EJWZqWdKfzfaNgRSW2eQYnq35gk5RDZUM4R9goafHV+PEmju7CR111ExSbLAVUMMQQIK2Ko34mD3boU6bx/fRLcB+lpTghtxk5GwYPLnKJK6bFs3IzZnoTJUQvjOOOjpduXc6o73M=
+  - secure: V+0VZPaFWBRnI/5uvecJnBOQjtaJmG3ZrZbf3jrAUNL2EnOR34GDPmRLuVMpdKlDMB6b5BvidXuE0IdbcEafnVTw9cfql9wyidnt88OEIg/euI0L8PQwUp/cHDZIT63BOPnC1HUtfYX+zI3OPazcylG9LM7G4PW0+ileyaE6PTIirHAT9klH1hq4mw5iprU4MIVHdPAVQygydTKxqKVcbAzElHFCR2QG00WCiApq0koRnazbwsaK7XpjQEiQqhGFOL/g3OW+euwJ3rwRc/I9sVUUOIR0ZrPozfdiYtl/qcxuREL7J81SLCNTZqDfz/hO0rLz3ZdNiZp51c7ihe/6JOKXgkhhovoCsLc0jLqSz2JQFLPZmWFXFPQruAeuhALZrWMTGjEa/Oi7oalSoAsjyaX6jd013RyVDinvuVn/teWIP88kDXCMtMyPe7OERa51z3/5SO1XnFnJ8NeUiHqpvqOM6RdUL5so+zkQ2wxYPCdZrdF+pS6QU90USRo+0jYZ/7ok0AMWVJYgWUxPn+GjinduXWYGx7j/KTm842UGFtfiSPfH8CdevaoDWbXsSv+V7m2hxqfh8YJ11lTGpCPrR+c82Jlx9x3+4pJmh24bb1u9gB0MKYMar9QRBOrAwbeJzbd3WpQdRK8cxPN9ny+iLSjLegYd7MFj6aE8NgSa0eY=
