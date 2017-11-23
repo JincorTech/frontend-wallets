@@ -5,20 +5,8 @@ import { connectedRouterRedirect } from 'redux-auth-wrapper/history3/redirect';
 
 import App from './containers/app/App';
 
-import AuthWrapper from './containers/auth/AuthWrapper';
-import SignUp from './containers/auth/SignUp';
-import SignIn from './containers/auth/SignIn';
-import RestorePassword from './containers/auth/RestorePassword';
-
 import AppWrapper from './containers/app/AppWrapper';
-import Dashboard from './containers/dashboard/Dashboard';
-import Referrals from './containers/referrals/Referrals';
-import Transactions from './containers/transactions/Transactions';
-import Account from './containers/account/Account';
-import SendTokens from './containers/sendTokens/SendTokens';
-import Verification from './components/verification/Verification';
-import VerificationSuccess from './components/verification/Success';
-import VerificationFailure from './components/verification/Failure';
+import Wallets from './containers/wallets/Wallets';
 
 export const namedRoutes = {
   base: '/',
@@ -43,39 +31,14 @@ const userIsAuthenticated = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsAuthenticated'
 });
 
-const userIsNotAuthenticated = connectedRouterRedirect({
-  redirectPath: namedRoutes.dashboard,
-  allowRedirectBack: false,
-  authenticatedSelector: (state) => !state.app.app.authorized,
-  redirectAction: routerActions.replace,
-  wrapperDisplayName: 'UserIsNotAuthenticated'
-});
-
 const routes = (
   <div>
     <Route path="/" component={App}>
-      <IndexRedirect to="/dashboard"/>
-
-      <Route path="auth" component={userIsNotAuthenticated(AuthWrapper)}>
-        <Route path="signup" component={SignUp}>
-          <Route path=":referralCode" component={SignUp}/>
-        </Route>
-        <Route path="signin" component={SignIn}/>
-        <Route path="password" component={RestorePassword}/>
-      </Route>
-
-      <Route path="dashboard" component={userIsAuthenticated(AppWrapper)}>
-        <IndexRoute component={Dashboard}/>
-        <Route path="transactions" component={Transactions}/>
-        <Route path="partners-program" component={Referrals}/>
-        <Route path="send-tokens" component={SendTokens}/>
-        <Route path="account" component={Account}/>
-        <Route path="verification" component={Verification}/>
+      <IndexRedirect to="/wallets"/>
+      <Route path="wallets" component={userIsAuthenticated(AppWrapper)}>
+        <IndexRoute component={Wallets}/>
       </Route>
     </Route>
-
-    <Route path="/dashboard/verification/success" component={VerificationSuccess}/>
-    <Route path="/dashboard/verification/failure" component={VerificationFailure}/>
   </div>
 );
 
