@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import s from './styles.css';
+
+import { openMakeDepositPopup } from '../../../redux/modules/singleWallet/makeDepositPopup';
 
 import Topbar from '../../../components/app/Topbar';
 import Button from '../../../components/common/Button';
 import Transaction from '../../../components/singleWallet/Transaction';
 import WalletInfo from '../../../components/singleWallet/WalletInfo';
+import MakeDepositPopup from '../MakeDepositPopup';
 
 class SingleWallet extends Component {
   constructor(props) {
@@ -52,6 +56,7 @@ class SingleWallet extends Component {
 
   render() {
     const { currentTab } = this.state;
+    const { openMakeDepositPopup } = this.props;
 
     return (
       <div className={s.wrapper}>
@@ -69,8 +74,17 @@ class SingleWallet extends Component {
           </div>
 
           <div className={s.buttons}>
-            <Button size="small">Make deposit</Button>
-            <Button size="small" styl="secondary">Send ETH</Button>
+            <Button
+              size="small"
+              onClick={() => openMakeDepositPopup('WALLET ADDRESS')}>
+              Make deposit
+            </Button>
+
+            <Button
+              size="small"
+              styl="secondary">
+              Send ETH
+            </Button>
           </div>
         </div>
 
@@ -93,9 +107,16 @@ class SingleWallet extends Component {
             {this._renderTabContent()}
           </div>
         </div>
+
+        <MakeDepositPopup/>
       </div>
     );
   }
 }
 
-export default SingleWallet;
+export default connect(
+  null,
+  {
+    openMakeDepositPopup
+  }
+)(SingleWallet);

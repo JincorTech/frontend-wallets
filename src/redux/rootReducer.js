@@ -4,6 +4,8 @@ import { reducer as notificationsReducer } from 'react-notification-system-redux
 
 import app from './modules/app/app';
 
+import makeDepositPopup from './modules/singleWallet/makeDepositPopup';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
@@ -11,5 +13,9 @@ export default combineReducers({
 
   app: combineReducers({
     app
+  }),
+
+  singleWallet: combineReducers({
+    makeDepositPopup
   })
 });
