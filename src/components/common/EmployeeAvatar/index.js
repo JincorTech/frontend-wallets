@@ -12,7 +12,7 @@ const EmployeeAvatar = (props) => {
     avatar
   } = props;
 
-  const renderAvatar = () => (<img className={s.avatar} src="avatar"/>);
+  const renderAvatar = () => (<img className={s.avatar} src={avatar}/>);
   const renderMock = () => (
     <div className={s.mock} style={getBackgroundColor(id)}>
       {getInitials(`${firstName} ${lastName}`)}

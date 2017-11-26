@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import s from './styles.css';
 
 const Sidebar = () => (
@@ -11,7 +12,7 @@ const Sidebar = () => (
       <a className={s.link} href="">Messenger</a>
       <a className={s.link} href="">My Company</a>
       <a className={s.link} href="">Contracts</a>
-      <a className={s.active}>Wallets</a>
+      <Link to="/wallets" className={s.active}>Wallets</Link>
       <a className={s.link} href="">Search</a>
     </div>
   </div>

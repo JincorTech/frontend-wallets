@@ -7,6 +7,10 @@
 .value {
   font: normal 22px Roboto;
   color: #222;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .label {
