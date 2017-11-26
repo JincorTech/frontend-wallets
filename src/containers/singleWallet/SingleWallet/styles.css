@@ -1,0 +1,60 @@
+@use postcss-short;
+
+.wrapper {
+  max-width: 100%;
+  width: auto;
+}
+
+.info {
+  margin: 30px 0 45px;
+  position: relative;
+}
+
+.value {
+  font: normal 44px Roboto;
+  color: #6e7987;
+
+  & > span {
+    color: #222;
+  }
+}
+
+.label {
+  font: normal 16px Roboto;
+  margin-top: 10px;
+  color: #6e7987;
+}
+
+.buttons {
+  position: absolute 0 0 * *;
+  width: 200px;
+
+  & > button {
+    margin-bottom: 15px;
+  }
+}
+
+.container {
+  width: 880px;
+}
+
+.tabs {
+  margin: 0 -12px;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.tab {
+  font: normal 16px/19px Roboto;
+  color: #6e7987;
+  display: inline-block;
+  margin: 0 12px;
+  cursor: pointer;
+  padding: 15px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.active {
+  composes: tab;
+  color: #222;
+  border-bottom: 1px solid #222;
+}

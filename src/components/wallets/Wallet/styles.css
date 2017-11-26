@@ -1,0 +1,73 @@
+@use postcss-short;
+
+.wallet {
+  margin: 10px 0;
+  padding: 20px 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.icon {
+  width: 60px;
+  padding-top: 10px;
+  display: inline-block;
+  vertical-align: top;
+
+  & > img {
+    size: 36px;
+  }
+}
+
+.wrap {
+  position: relative;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.info {
+  width: calc(100% - 60px);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.name {
+  font: normal 22px Roboto;
+  color: #222;
+}
+
+.address {
+  font: normal 14px Roboto;
+  color: #6e7987;
+  margin-top: 9px;
+}
+
+.balance {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font: normal 22px Roboto;
+  color: #6e7987;
+
+  & > span {
+    color: #222;
+  }
+}
+
+.lastTransaction {
+  padding-top: 15px;
+}
+
+.date {
+  display: inline-block;
+  width: 50%;
+  font: normal 14px Roboto;
+  color: #6e7987;
+}
+
+.balanceChange {
+  display: inline-block;
+  width: 50%;
+  font: normal 14px Roboto;
+  color: #6e7987;
+  text-align: right;
+}

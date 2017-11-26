@@ -26,7 +26,6 @@ class Popup extends Component {
 
   render() {
     const {
-      title,
       children,
       open,
       close
@@ -34,15 +33,14 @@ class Popup extends Component {
 
     const renderPopup = () => (
       <div className={s.background} onClick={this._handleBackdropClick}>
+        <div className={s.close}>
+          <button type="button" onClick={() => close()}>
+            <img src={require('./images/close.svg')}/>
+          </button>
+        </div>
+
         <div className={s.popup} ref={(popup) => { this.popup = popup; }}>
-          {title && <div className={s.title}>{title}</div>}
-          <div className={s.body}>{children}</div>
-          <div className={s.footer}>
-            <button className={s.close} type="button" onClick={() => close()}>
-              <img src={require('./images/close.svg')}/>
-              <span>Close</span>
-            </button>
-          </div>
+          {children}
         </div>
       </div>
     );
