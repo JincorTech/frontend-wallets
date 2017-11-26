@@ -37,10 +37,10 @@ const Wallet = (props) => {
 };
 
 Wallet.PropTypes = {
-  type: PropTypes.oneOf(['corporate', 'personal']).isRequred,
-  address: PropTypes.string.isRequred,
-  balance: PropTypes.number.isRequred,
-  lastTransactionId: PropTypes.string.isRequred
+  type: PropTypes.oneOf(['corporate', 'personal']).isRequired,
+  address: PropTypes.string.isRequired,
+  balance: PropTypes.number.isRequired,
+  lastTransactionId: PropTypes.string.isRequired
 };
 
 export default Wallet;

@@ -3,9 +3,9 @@ import s from './styles.css';
 
 import Pagename from '../Pagename';
 
-const Topbar = ({ pathname }) => (
+const Topbar = (props) => (
   <div className={s.topbar}>
-    <div className={s.title}><Pagename pathname={pathname}/></div>
+    <div className={s.title}><Pagename {...props}/></div>
   </div>
 );
 

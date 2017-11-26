@@ -7,6 +7,7 @@ import App from './containers/app/App';
 
 import AppWrapper from './containers/app/AppWrapper';
 import Wallets from './containers/wallets/Wallets';
+import SingleWallet from './containers/singleWallet/SingleWallet';
 
 export const namedRoutes = {
   base: '/',
@@ -37,6 +38,7 @@ const routes = (
       <IndexRedirect to="/wallets"/>
       <Route path="wallets" component={userIsAuthenticated(AppWrapper)}>
         <IndexRoute component={Wallets}/>
+        <Route path=":walletId" component={SingleWallet}/>
       </Route>
     </Route>
   </div>
