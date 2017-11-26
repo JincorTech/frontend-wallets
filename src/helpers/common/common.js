@@ -23,3 +23,11 @@ export const bigNum = (num, limit = 6) => {
 
   return array[0];
 };
+
+export const formatAmount = (amount) => {
+  if (Number(amount) < 0) {
+    return amount;
+  }
+
+  return `+${amount}`;
+};

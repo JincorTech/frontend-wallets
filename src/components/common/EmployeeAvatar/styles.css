@@ -1,0 +1,13 @@
+@use postcss-short;
+
+.avatar {
+  border-radius: 50%;
+}
+
+.mock {
+  size: 36px;
+  border-radius: 50%;
+  font: 500 14px/36px Roboto;
+  color: #fff;
+  text-align: center;
+}

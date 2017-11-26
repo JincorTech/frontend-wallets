@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import { reducer as notificationsReducer } from 'react-notification-system-redux';
 
 import app from './modules/app/app';
+import txInfoPopup from './modules/app/txInfoPopup';
 
 import makeDepositPopup from './modules/singleWallet/makeDepositPopup';
 
@@ -12,7 +13,8 @@ export default combineReducers({
   notifications: notificationsReducer,
 
   app: combineReducers({
-    app
+    app,
+    txInfoPopup
   }),
 
   singleWallet: combineReducers({

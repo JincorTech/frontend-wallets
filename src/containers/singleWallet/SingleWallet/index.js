@@ -10,6 +10,51 @@ import Transaction from '../../../components/singleWallet/Transaction';
 import WalletInfo from '../../../components/singleWallet/WalletInfo';
 import MakeDepositPopup from '../MakeDepositPopup';
 
+const TXS = [
+  {
+    id: 'txid1111',
+    status: 'pending',
+    amount: 200,
+    currency: 'ETH',
+    date: 1511714419000,
+    employee: {
+      id: 'userid1111',
+      wallet: '123123123',
+      firstName: 'John',
+      lastName: 'Doe',
+      avatar: ''
+    }
+  },
+  {
+    id: 'txid2222',
+    status: 'success',
+    amount: -50,
+    currency: 'ETH',
+    date: 1511714419000,
+    employee: {
+      id: 'userid2222',
+      wallet: '83838383',
+      firstName: 'Jane',
+      lastName: 'Doe',
+      avatar: ''
+    }
+  },
+  {
+    id: 'txid3333',
+    status: 'failure',
+    amount: 0.1111,
+    currency: 'ETH',
+    date: 1511714419000,
+    employee: {
+      id: 'userid3333',
+      wallet: '84848573874',
+      firstName: 'James',
+      lastName: 'Doe',
+      avatar: ''
+    }
+  }
+];
+
 class SingleWallet extends Component {
   constructor(props) {
     super(props);
@@ -33,12 +78,7 @@ class SingleWallet extends Component {
       case 'transactions':
         return (
           <div>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
+            {TXS.map((tx) => (<Transaction key={tx.id + tx.date} tx={tx}/>))}
           </div>
         );
       case 'wallet':
