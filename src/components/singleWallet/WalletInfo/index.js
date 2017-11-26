@@ -34,7 +34,7 @@ WalletInfo.propTypes = {
   address: PropTypes.string.isRequired,
   createdAt: PropTypes.number.isRequired,
   currency: PropTypes.oneOf(['ETH', 'JCR']).isRequired,
-  type: PropTypes.oneOf('corporate', 'personal').isRequired
+  type: PropTypes.oneOf(['corporate', 'personal']).isRequired
 };
 
 export default WalletInfo;

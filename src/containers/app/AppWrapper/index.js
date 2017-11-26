@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import s from './styles.css';
 
 import Sidebar from '../../../components/app/Sidebar';
+import TxInfoPopup from '../TxInfoPopup';
 
 class AppWrapper extends Component {
   render() {
@@ -17,6 +18,8 @@ class AppWrapper extends Component {
         <div className={s.main}>
           <div className={s.children}>{children}</div>
         </div>
+
+        <TxInfoPopup/>
       </div>
     );
   }
