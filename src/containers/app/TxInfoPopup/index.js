@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { format } from 'date-fns';
 import s from './styles.css';
 
-import { formatAmount } from '../../../helpers/common/common';
+import { formatAmount, bigNum } from '../../../helpers/common/common';
 
 import { closeTxPopup } from '../../../redux/modules/app/txInfoPopup';
 
@@ -43,10 +43,10 @@ const TxInfoPopup = (props) => {
       <div className={s.popup}>
         <div className={s.header}>
           <div className={s.value}>
-            <span>{formatAmount(amount)}</span> {currency}
+            <span>{formatAmount(bigNum(amount))}</span> {currency}
           </div>
           <div className={s.date}>
-            {format(date, 'MM/DD/YY - HH:mm')}
+            {format(date * 1000, 'MM/DD/YY - HH:mm')}
             <div className={s.status}><Status status={status}/></div>
           </div>
         </div>

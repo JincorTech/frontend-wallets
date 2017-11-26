@@ -51,6 +51,7 @@
   font: normal 22px/34px Roboto;
   color: #222;
   max-width: 300px;
+  word-break: break-all;
 }
 
 .blockIcon {

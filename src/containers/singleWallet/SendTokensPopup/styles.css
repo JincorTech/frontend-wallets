@@ -1,0 +1,74 @@
+.popup {
+  width: 430px;
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 280px auto;
+}
+
+.header {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 40px 0 30px;
+  font: normal 26px/38px Roboto;
+  color: #222;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.body {
+  padding: 30px 25px;
+}
+
+.senderLabel {
+  font: normal 16px Roboto;
+  color: #6e7987;
+  margin-bottom: 15px;
+}
+
+.senderBlock {
+  background-color: #0080ff;
+  border-radius: 4px;
+  padding: 20px 15px;
+}
+
+.type {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+  color: #fff;
+  font: normal 22px Roboto;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.balance {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  color: #d3e6ff;
+  font: normal 22px Roboto;
+
+  & > span {
+    color: #fff;
+  }
+}
+
+.address {
+  font: normal 14px Roboto;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.form {
+  margin-top: 30px;
+}
+
+.field {
+  margin: 7px 0;
+}
+
+.button {
+  margin-top: 30px;
+}

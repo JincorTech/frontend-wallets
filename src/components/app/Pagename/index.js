@@ -20,7 +20,7 @@ const Pagename = (props) => {
 
   if (pagename === 'Personal wallet') {
     return (
-      <div>
+      <div className={s.pagename}>
         <div>Personal wallet</div>
         <img src={require('../../../assets/images/icons/personalWallet.svg')}/>
       </div>

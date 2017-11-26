@@ -19,6 +19,7 @@
 }
 
 .wrap {
+  display: block;
   position: relative;
   padding-bottom: 20px;
   border-bottom: 1px solid #e6e8eb;
@@ -33,6 +34,10 @@
 .name {
   font: normal 22px Roboto;
   color: #222;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .address {
@@ -55,6 +60,7 @@
 
 .lastTransaction {
   padding-top: 15px;
+  cursor: pointer;
 }
 
 .date {
@@ -62,6 +68,11 @@
   width: 50%;
   font: normal 14px Roboto;
   color: #6e7987;
+}
+
+.status {
+  display: inline-block;
+  margin-left: 15px;
 }
 
 .balanceChange {
