@@ -8,7 +8,6 @@ import Wallet from '../../../components/wallets/Wallet';
 class Wallets extends Component {
   render() {
     const { wallets } = this.props;
-    console.log(wallets);
 
     return (
       <div className={s.wrapper}>
