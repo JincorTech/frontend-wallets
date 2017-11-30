@@ -46,7 +46,7 @@ const Transaction = (props) => {
         <div className={s.wrap}>
           <div className={s.name}>{`${firstName} ${lastName}`}</div>
           <div className={s.date}>
-            {format(date, 'MM/DD/YY - HH:mm')}
+            {format(date * 1000, 'MM/DD/YY - HH:mm')}
             <div className={s.status}><Status status={status}/></div>
           </div>
           <div className={s.balance}><span>{formatAmount(amount)}</span> {currency}</div>
