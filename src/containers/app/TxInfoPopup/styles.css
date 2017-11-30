@@ -1,0 +1,72 @@
+@use postcss-short;
+
+.popup {
+  width: 430px;
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 280px auto;
+}
+
+.header {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 40px 0 30px;
+  font: normal 26px/38px Roboto;
+  color: #222;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.value {
+  font: normal 32px/38px Roboto;
+  color: #6e7987;
+
+  & > span {
+    color: #222;
+  }
+}
+
+.date {
+  font: normal 14px/24px Roboto;
+  color: #6e7987;
+  margin-top: 10px;
+}
+
+.status {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.body {
+  padding: 30px 25px;
+}
+
+.block {
+  padding: 0 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.blockValue {
+  font: normal 22px/34px Roboto;
+  color: #222;
+  max-width: 300px;
+  word-break: break-all;
+}
+
+.blockIcon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  & > img {
+    size: 36px;
+  }
+}
+
+.blockLabel {
+  font: normal 14px/16px Roboto;
+  color: #6e7987;
+  margin-top: 4px;
+}

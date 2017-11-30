@@ -40,8 +40,10 @@ export const parseJSON = (res) => {
     return res.json();
   }
 
-  if (res.statusCode === 401) {
+  if (res.status === 401) {
     removeToken();
+    // omg
+    window.location.replace('https://beta.jincor.com/cmp/auth/signin');
   }
 
   throw new RequestError(res);

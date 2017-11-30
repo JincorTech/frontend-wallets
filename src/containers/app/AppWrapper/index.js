@@ -1,87 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames/bind';
 import s from './styles.css';
 
-import { namedRoutes } from '../../../routes';
-
-import { fetchUser } from '../../../redux/modules/app/app';
-import { openSidebar, closeSidebar } from '../../../redux/modules/app/sidebar';
+import { fetchWallets } from '../../../redux/modules/wallets/wallets';
 
 import Sidebar from '../../../components/app/Sidebar';
-import Topbar from '../../../components/app/Topbar';
-import Alert from '../../../components/app/Alert';
-import MakeDepositPopup from '../MakeDepositPopup';
-import KycAlertPopup from '../KycAlertPopup';
-
-const cx = classNames.bind(s);
+import TxInfoPopup from '../TxInfoPopup';
 
 class AppWrapper extends Component {
   componentWillMount() {
-    const { fetchUser } = this.props;
-
-    fetchUser();
+    this.props.fetchWallets();
   }
 
   render() {
     const {
       children,
-      kycStatus,
-      location,
-      openSidebar,
-      closeSidebar,
-      sidebarIsOpen
     } = this.props;
-
-    const {
-      pathname
-    } = location;
-
-    const kycToBool = () => {
-      if (kycStatus !== 'verified') {
-        return false;
-      }
-
-      return true;
-    };
-
-    const sidebarClassName = cx(
-      s.sidebar,
-      !kycToBool() && s.alert,
-      sidebarIsOpen && s.open
-    );
 
     return (
       <div className={s.wrapper}>
-        {!kycToBool() &&
-          <Alert>
-            <a href={namedRoutes.verification}>
-              Participation in ICO requires you to complete verification process
-            </a>
-          </Alert>}
-        <div className={sidebarClassName}>
-          <Sidebar kyc={kycToBool()} location={location} closeSidebar={() => closeSidebar()}/>
+        <div className={s.sidebar}>
+          <Sidebar/>
         </div>
         <div className={s.main}>
-          <Topbar pathname={pathname} openSidebar={() => openSidebar()}/>
           <div className={s.children}>{children}</div>
         </div>
 
-        <MakeDepositPopup/>
-        <KycAlertPopup/>
+        <TxInfoPopup/>
       </div>
     );
   }
 }
 
 export default connect(
-  (state) => ({
-    kycStatus: state.app.app.user.kycStatus,
-    sidebarIsOpen: state.app.sidebar.open
-  }),
+  null,
   {
-    fetchUser,
-    openSidebar,
-    closeSidebar
+    fetchWallets
   }
 )(AppWrapper);

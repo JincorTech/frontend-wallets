@@ -1,0 +1,20 @@
+.row {
+  padding: 20px 0;
+  margin: 10px 0;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.value {
+  font: normal 22px Roboto;
+  color: #222;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.label {
+  font: normal 14px Roboto;
+  color: #6e7987;
+  margin-top: 6px;
+}

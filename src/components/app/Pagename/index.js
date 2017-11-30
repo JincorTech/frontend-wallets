@@ -1,16 +1,35 @@
 import React from 'react';
+import s from './styles.css';
 
 const pages = {
-  '/dashboard': 'Dashboard',
-  '/dashboard/transactions': 'Transactions',
-  '/dashboard/partners-program': 'Partner Program',
-  '/dashboard/send-tokens': 'Send Tokens',
-  '/dashboard/account': 'Account',
-  '/dashboard/verification': 'KYC Verification',
-  '/dashboard/verification/success': 'KYC Verification',
-  '/dashboard/verification/failure': 'KYC Verification'
+  '/wallets': 'Wallets',
+  '/wallets/': 'Wallets'
 };
 
-const Pagename = ({ pathname }) => (<span>{pages[pathname]}</span>);
+const Pagename = (props) => {
+  const { pathname, pagename } = props;
+
+  if (pagename === 'Corporate wallet') {
+    return (
+      <div className={s.pagename}>
+        <div>Corporate wallet</div>
+        <img src={require('../../../assets/images/icons/corporateWallet.svg')}/>
+      </div>
+    );
+  }
+
+  if (pagename === 'Personal wallet') {
+    return (
+      <div className={s.pagename}>
+        <div>Personal wallet</div>
+        <img src={require('../../../assets/images/icons/personalWallet.svg')}/>
+      </div>
+    );
+  }
+
+  return (
+    <div>{pages[pathname]}</div>
+  );
+};
 
 export default Pagename;
