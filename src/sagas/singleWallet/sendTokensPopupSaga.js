@@ -7,6 +7,7 @@ import {
   initiateSendTokens,
   verifySendTokens
 } from '../../redux/modules/singleWallet/sendTokensPopup';
+import { fetchWallets } from '../../redux/modules/wallets/wallets';
 
 /**
  * Initiate enable two factor auth
@@ -37,6 +38,7 @@ function* verifySendTokensIterator({ payload }) {
     yield call(post, '/tx/verify', { verification: payload });
     yield put(verifySendTokens.success());
     yield put(notify('success', 'Transaction in process now'));
+    yield put(fetchWallets());
   } catch (e) {
     yield put(verifySendTokens.failure(new SubmissionError({ _error: e.error })));
   }

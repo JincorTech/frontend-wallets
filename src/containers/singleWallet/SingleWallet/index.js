@@ -34,6 +34,7 @@ class SingleWallet extends Component {
     const {
       openMakeDepositPopup,
       openSendTokensPopup,
+      spinner,
       wallets,
       routeParams: {
         walletId
@@ -63,14 +64,23 @@ class SingleWallet extends Component {
       return 'Personal wallet';
     };
 
+    const renderTxs = () => {
+      if (wallet.transactions) {
+        const txs = Array.from(wallet.transactions);
+        return txs
+          .sort((a, b) => (b.date - a.date))
+          .map((tx) => (<Transaction key={tx.id + tx.date} tx={tx}/>));
+      }
+
+      return null;
+    };
+
     const renderTabContent = () => {
       switch (currentTab) {
         case 'transactions':
           return (
             <div>
-              {wallet.transactions
-                ? wallet.transactions.map((tx) => (<Transaction key={tx.id + tx.date} tx={tx}/>))
-                : null}
+              {renderTxs()}
             </div>
           );
         case 'wallet':
@@ -103,12 +113,14 @@ class SingleWallet extends Component {
 
           <div className={s.buttons}>
             <Button
+              spinner={spinner}
               size="small"
               onClick={() => openMakeDepositPopup(address)}>
               Make deposit
             </Button>
 
             <Button
+              spinner={spinner}
               size="small"
               onClick={() => openSendTokensPopup({
                 type,
@@ -117,7 +129,7 @@ class SingleWallet extends Component {
                 currrency
               })}
               styl="secondary">
-              Send ETH
+              Send {currrency}
             </Button>
           </div>
         </div>
@@ -152,7 +164,7 @@ class SingleWallet extends Component {
 
 export default connect(
   (state) => ({
-    wallets: state.wallets.wallets.wallets
+    ...state.wallets.wallets
   }),
   {
     openMakeDepositPopup,
