@@ -17,10 +17,12 @@ const Wallet = (props) => {
     type,
     address,
     balance,
-    currency,
+    currrency,
     transactions,
     openTxPopup
   } = props;
+
+  console.log(props);
 
   const sortedTxs = (txs) => Array.from(txs).sort((a, b) => b.date - a.date);
   const lastTx = sortedTxs(transactions)[0];
@@ -40,16 +42,18 @@ const Wallet = (props) => {
         <Link to={`/wallets/${address}`} className={s.wrap}>
           <div className={s.name}>{type} wallet</div>
           <div className={s.address}>{address}</div>
-          <div className={s.balance}><span>{balance}</span> {currency}</div>
+          <div className={s.balance}><span>{balance}</span> {currrency}</div>
         </Link>
 
-        <div className={s.lastTransaction} onClick={() => openTxPopup(lastTx)}>
-          <div className={s.date}>
-            {format(lastTx.date * 1000, 'MM/DD/YY - HH:mm')}
-            <div className={s.status}><Status status={lastTx.status}/></div>
+        {transactions.length > 0 ? (
+          <div className={s.lastTransaction} onClick={() => openTxPopup(lastTx)}>
+            <div className={s.date}>
+              {format(lastTx.date * 1000, 'MM/DD/YY - HH:mm')}
+              <div className={s.status}><Status status={lastTx.status}/></div>
+            </div>
+            <div className={s.balanceChange}>{formatAmount(lastTx.amount)} {lastTx.currency}</div>
           </div>
-          <div className={s.balanceChange}>{formatAmount(lastTx.amount)} {lastTx.currency}</div>
-        </div>
+        ) : null}
       </div>
     </div>
   );
@@ -59,7 +63,7 @@ Wallet.PropTypes = {
   type: PropTypes.oneOf(['corporate', 'personal']).isRequired,
   address: PropTypes.string.isRequired,
   balance: PropTypes.number.isRequired,
-  currency: PropTypes.oneOf(['ETH', 'JCR']).isRequired,
+  currrency: PropTypes.oneOf(['ETH', 'JCR']).isRequired,
   lastTransactionId: PropTypes.string.isRequired
 };
 

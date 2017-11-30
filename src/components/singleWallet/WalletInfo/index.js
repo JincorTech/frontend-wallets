@@ -6,10 +6,12 @@ import s from './styles.css';
 const WalletInfo = (props) => {
   const {
     address,
-    createdAt,
-    currency,
+    created_at: createdAt,
+    currrency,
     type
   } = props;
+
+  console.log(props);
 
   return (
     <div className={s.info}>
@@ -24,7 +26,7 @@ const WalletInfo = (props) => {
       </div>
 
       <div className={s.row}>
-        <div className={s.value}>{currency} Blockchain</div>
+        <div className={s.value}>{currrency} Blockchain</div>
         <div className={s.label}>Type of blockchain</div>
       </div>
 

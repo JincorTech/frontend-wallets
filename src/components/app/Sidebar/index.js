@@ -9,11 +9,11 @@ const Sidebar = () => (
     </div>
 
     <div className={s.navigation}>
-      <a className={s.link} href="">Messenger</a>
-      <a className={s.link} href="">My Company</a>
-      <a className={s.link} href="">Contracts</a>
+      <a className={s.link} href="https://beta.jincor.com/msg">Messenger</a>
+      <a className={s.link} href="https://beta.jincor.com/cmp">My Company</a>
+      <a className={s.link} href="/contracts">Contracts</a>
       <Link to="/wallets" className={s.active}>Wallets</Link>
-      <a className={s.link} href="">Search</a>
+      <a className={s.link} href="https://beta.jincor.com/cmp/app/search">Search</a>
     </div>
   </div>
 );

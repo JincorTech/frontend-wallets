@@ -17,74 +17,40 @@ class SingleWallet extends Component {
     super(props);
 
     this.state = {
-      currentTab: 'transactions',
-      wallet: {
-        type: '',
-        address: '',
-        balance: 0,
-        currency: 'ETH',
-        createdAt: 0,
-        transactions: []
-      }
+      currentTab: 'transactions'
     };
 
     this._checkoutTab = this._checkoutTab.bind(this);
-    this._renderTabContent = this._renderTabContent.bind(this);
-  }
-
-  componentWillMount() {
-    const {
-      wallets,
-      routeParams: {
-        walletId
-      }
-    } = this.props;
-
-    const wallet = wallets.reduce((acc, val) =>
-      ((val.address === walletId)
-        ? val
-        : acc));
-
-    this.setState({ wallet });
   }
 
   _checkoutTab(currentTab) {
     this.setState({ currentTab });
   }
 
-  _renderTabContent() {
-    const { currentTab, wallet } = this.state;
-
-    switch (currentTab) {
-      case 'transactions':
-        return (
-          <div>
-            {wallet.transactions.map((tx) => (<Transaction key={tx.id + tx.date} tx={tx}/>))}
-          </div>
-        );
-      case 'wallet':
-        return (
-          <div>
-            <WalletInfo {...wallet}/>
-          </div>
-        );
-      default:
-        return (
-          <div>Something went wrong, please try to reload the page.</div>
-        );
-    }
-  }
-
   render() {
-    const { currentTab, wallet } = this.state;
+    const { currentTab } = this.state;
+
     const {
       openMakeDepositPopup,
-      openSendTokensPopup
+      openSendTokensPopup,
+      wallets,
+      routeParams: {
+        walletId
+      }
     } = this.props;
+
+    const wallet = wallets.reduce((acc, val) => {
+      if (val.address === walletId) {
+        return val;
+      }
+
+      return acc;
+    }, {});
+
     const {
       type,
       balance,
-      currency,
+      currrency,
       address,
     } = wallet;
 
@@ -96,6 +62,29 @@ class SingleWallet extends Component {
       return 'Personal wallet';
     };
 
+    const renderTabContent = () => {
+      switch (currentTab) {
+        case 'transactions':
+          return (
+            <div>
+              {wallet.transactions
+                ? wallet.transactions.map((tx) => (<Transaction key={tx.id + tx.date} tx={tx}/>))
+                : null}
+            </div>
+          );
+        case 'wallet':
+          return (
+            <div>
+              <WalletInfo {...wallet}/>
+            </div>
+          );
+        default:
+          return (
+            <div>Something went wrong, please try to reload the page.</div>
+          );
+      }
+    };
+
     return (
       <div className={s.wrapper}>
         <Topbar pagename={getPagename()}/>
@@ -103,7 +92,7 @@ class SingleWallet extends Component {
         <div className={s.info}>
           <div className={s.balance}>
             <div className={s.value}>
-              <span>{balance}</span> {currency}
+              <span>{balance}</span> {currrency}
             </div>
 
             <div className={s.label}>
@@ -124,7 +113,7 @@ class SingleWallet extends Component {
                 type,
                 senderAddress: address,
                 balance,
-                currency
+                currrency
               })}
               styl="secondary">
               Send ETH
@@ -148,7 +137,7 @@ class SingleWallet extends Component {
           </div>
 
           <div className={s.tabContent}>
-            {this._renderTabContent()}
+            {renderTabContent()}
           </div>
         </div>
 
