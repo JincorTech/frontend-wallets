@@ -11,6 +11,7 @@ import Transaction from '../../../components/singleWallet/Transaction';
 import WalletInfo from '../../../components/singleWallet/WalletInfo';
 import MakeDepositPopup from '../MakeDepositPopup';
 import SendTokensPopup from '../SendTokensPopup';
+import VerifySendTokensPopup from '../VerifySendTokensPopup';
 
 class SingleWallet extends Component {
   constructor(props) {
@@ -143,6 +144,7 @@ class SingleWallet extends Component {
 
         <MakeDepositPopup/>
         <SendTokensPopup/>
+        <VerifySendTokensPopup/>
       </div>
     );
   }

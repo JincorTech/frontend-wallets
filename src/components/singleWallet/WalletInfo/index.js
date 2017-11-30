@@ -11,8 +11,6 @@ const WalletInfo = (props) => {
     type
   } = props;
 
-  console.log(props);
-
   return (
     <div className={s.info}>
       <div className={s.row}>

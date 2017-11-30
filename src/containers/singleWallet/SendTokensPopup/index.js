@@ -18,12 +18,12 @@ class SendTokensPopup extends Component {
       change,
       open,
       senderAddress,
-      currency
+      currrency
     } = nextProps;
 
-    if (open && senderAddress && currency) {
+    if (open && senderAddress && currrency) {
       change('sender', senderAddress);
-      change('currency', currency);
+      change('currency', currrency);
     }
   }
 
@@ -37,7 +37,7 @@ class SendTokensPopup extends Component {
       senderAddress,
       balance,
       type,
-      currency
+      currrency
     } = this.props;
 
     return (
@@ -46,7 +46,7 @@ class SendTokensPopup extends Component {
         open={open}>
 
         <div className={s.popup}>
-          <div className={s.header}>Send {currency}</div>
+          <div className={s.header}>Send {currrency}</div>
 
           <div className={s.body}>
             <div className={s.sender}>
@@ -54,7 +54,7 @@ class SendTokensPopup extends Component {
               <div className={s.senderBlock}>
                 <div className={s.info}>
                   <div className={s.type}>{type} wallet</div>
-                  <div className={s.balance}><span>{bigNum(balance, 3)}</span> {currency}</div>
+                  <div className={s.balance}><span>{bigNum(balance, 3)}</span> {currrency}</div>
                 </div>
                 <div className={s.address}>{senderAddress}</div>
               </div>
@@ -93,7 +93,7 @@ SendTokensPopup.propTypes = {
   type: PropTypes.oneOf(['corporate', 'personal']).isRequired,
   senderAddress: PropTypes.string.isRequired,
   balance: PropTypes.number.isRequired,
-  currency: PropTypes.oneOf(['ETH', 'JCR']).isRequired,
+  currrency: PropTypes.oneOf(['ETH', 'JCR']).isRequired,
   open: PropTypes.bool.isRequired
 };
 
