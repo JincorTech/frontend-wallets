@@ -7,7 +7,7 @@ import { openTest } from '../../../redux/modules/app/test';
 
 import Sidebar from '../../../components/app/Sidebar';
 import TxInfoPopup from '../TxInfoPopup';
-import Test from '../../../components/app/Test/test';
+import Test from '../../../components/app/Test';
 
 class AppWrapper extends Component {
   componentWillMount() {
