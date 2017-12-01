@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import { fetchWallets } from '../../../redux/modules/wallets/wallets';
+import { openTest } from '../../../redux/modules/app/test';
 
 import Sidebar from '../../../components/app/Sidebar';
 import TxInfoPopup from '../TxInfoPopup';
+import Test from '../../../components/app/Test/test';
 
 class AppWrapper extends Component {
   componentWillMount() {
     this.props.fetchWallets();
+    this.props.openTest();
 
     setInterval(this.props.fetchWallets, 30000);
   }
@@ -29,6 +32,7 @@ class AppWrapper extends Component {
         </div>
 
         <TxInfoPopup/>
+        <Test/>
       </div>
     );
   }
@@ -37,6 +41,7 @@ class AppWrapper extends Component {
 export default connect(
   null,
   {
-    fetchWallets
+    fetchWallets,
+    openTest
   }
 )(AppWrapper);
