@@ -1,0 +1,12 @@
+.test {
+  font: normal 16px Roboto;
+  color: #bc3647;
+  text-align: center;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 20px;
+
+  & > div {
+    margin-top: 20px;
+  }
+}
