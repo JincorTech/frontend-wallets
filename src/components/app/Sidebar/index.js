@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import s from './styles.css';
 
 const Sidebar = () => (
@@ -9,11 +8,11 @@ const Sidebar = () => (
     </div>
 
     <div className={s.navigation}>
-      <a className={s.link} href="https://beta.jincor.com/msg">Messenger</a>
       <a className={s.link} href="https://beta.jincor.com/cmp">My Company</a>
-      <a className={s.link} href="/contracts">Contracts</a>
-      <Link to="/wallets" className={s.active}>Wallets</Link>
       <a className={s.link} href="https://beta.jincor.com/cmp/app/search">Search</a>
+      <a href="/wallets" className={s.active}>Wallets</a>
+      <a className={s.disabled} href="/">Contracts</a>
+      <a className={s.link} href="https://beta.jincor.com/msg">Messenger</a>
     </div>
   </div>
 );
