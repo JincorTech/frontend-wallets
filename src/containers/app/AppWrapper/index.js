@@ -11,7 +11,7 @@ class AppWrapper extends Component {
   componentWillMount() {
     this.props.fetchWallets();
 
-    setInterval(this.props.fetchWallets(), 30000);
+    setInterval(this.props.fetchWallets, 30000);
   }
 
   render() {
