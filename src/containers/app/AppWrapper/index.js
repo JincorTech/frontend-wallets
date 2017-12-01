@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import { fetchWallets } from '../../../redux/modules/wallets/wallets';
-import { openTest } from '../../../redux/modules/app/test';
+import { openTest } from '../../../redux/modules/app/popuptest';
 
 import Sidebar from '../../../components/app/Sidebar';
 import TxInfoPopup from '../TxInfoPopup';
-import Test from '../../../components/app/Test';
+import Test from '../../../components/app/PopupTest';
 
 class AppWrapper extends Component {
   componentWillMount() {

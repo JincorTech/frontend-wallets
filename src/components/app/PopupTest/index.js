@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { closeTest } from '../../../redux/modules/app/test';
+import { closeTest } from '../../../redux/modules/app/popuptest';
 
 import Popup from '../../common/Popup';
 import Button from '../../common/Button';
