@@ -43,7 +43,7 @@ export const parseJSON = (res) => {
   if (res.status === 401) {
     removeToken();
     // omg
-    window.location.replace('https://beta.jincor.com/cmp/auth/signin');
+    window.location.assign('/cmp/auth/signin');
   }
 
   throw new RequestError(res);

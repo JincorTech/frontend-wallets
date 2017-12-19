@@ -40,8 +40,6 @@ function* checkAuthIterator() {
     yield put(login(token));
   } else {
     yield put(setAuthState({ authorized: false, token: '' }));
-    // yield call(console.log, 'rdr');
-    // yield call([window.location, window.location.replace], 'https://beta.jincor.com/cmp/auth/signin');
   }
 }
 

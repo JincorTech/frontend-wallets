@@ -8,11 +8,11 @@ const Sidebar = () => (
     </div>
 
     <div className={s.navigation}>
-      <a className={s.link} href="https://beta.jincor.com/cmp">My Company</a>
-      <a className={s.link} href="https://beta.jincor.com/cmp/app/search">Search</a>
+      <a className={s.link} href="/cmp">My Company</a>
+      <a className={s.link} href="/cmp/app/search">Search</a>
       <a href="/wallets" className={s.active}>Wallets</a>
-      <a className={s.disabled} href="/">Contracts</a>
-      <a className={s.link} href="https://beta.jincor.com/msg">Messenger</a>
+      <a className={s.disabled} href="/contracts">Contracts</a>
+      <a className={s.link} href="/msg">Messenger</a>
     </div>
   </div>
 );
