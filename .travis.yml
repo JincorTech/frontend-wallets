@@ -1,39 +1,28 @@
 sudo: required
 services:
-- docker
+  - docker
 branches:
   only:
-  - master
-  - develop
-cache:
-  directories:
-  - node_modules
-install:
-- yarn
+    - master
+    - develop
 script:
-- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod"; else echo
-  "stage" ; fi`
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [
-  "$TRAVIS_BRANCH" == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse
-  --short HEAD)" ; fi`
-- docker build --no-cache -t jincort/frontend-wallets-develop:${TAG} .
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} cp
-  -r .env.${ENV_FILE} .env
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
-  build
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
-  run lint
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG} yarn
-  run test:CI
+  - export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "prod"; else echo "stage" ; fi`
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then
+        echo "production";
+      elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+        echo "stage";
+      else
+        echo "dev-$(git rev-parse --short HEAD)" ;
+      fi`
+  - docker build --no-cache -t jincort/frontend-wallets-develop:${TAG} .
+  - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-wallets-develop:${TAG}
+    /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint && yarn run test:CI"
 after_success:
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif  "$TRAVIS_BRANCH"
-  == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
-  ; fi`
-- docker login -u $DOCKER_USER -p $DOCKER_PASS
-- docker build -f Dockerfile.prod --no-cache -t jincort/frontend-wallets:${TAG} .
-- docker push jincort/frontend-wallets-develop:${TAG}
-- docker push jincort/frontend-wallets:${TAG}
+  - export DOCKERFILE=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "Dockerfile.stage"; else echo "Dockerfile.prod" ; fi`
+  - docker build -f $DOCKERFILE --no-cache -t jincort/frontend-wallets:${TAG} .
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push jincort/frontend-wallets-develop:${TAG}
+  - docker push jincort/frontend-wallets:${TAG}
 notifications:
   slack:
     secure: mpvcu6u1+cstyt0yPqyDqMRePWJjCEbHsBfe86e/Qv4LUAmOAavXG83LDyL7+SA331Qb4H1GdIwyBMsfG02hqmWarOk/EKTYnoTzzipiO+RS6M+y2kc1cRVq8l3f5l4WiaPVH7uSR4Nu74YPIZaIqFdfmSSu2iYl0Hq6hUumfg9bMmany9qSiTqATGksUFp5b2vGU5GI474QYBckGinuJ3uBiWUR16sPfhHQ7Ge80HYXIneQeYoybINKOzY8EnNL3qZ9zvWc8qtk2OIpGSqitz+1lBiloWFB58sm7S1Uf/z4B5DJHl5ws/zWSNBTyvGkXJbq0mORzgMtR4QUxXu9DIveyRJBfrS7beWV9Z6bYJ76z0s53O/kj425JQxjkQmxw7oGocNKKeS6060t+b4n501DZbh7MWxBEQKuq20spGfchRsKdJqBEEAKHw967PhFTTJNpbOzUIiMkYOofMoef55VNnCxHZ683BE8i4TnfEKgeKsMQQ95DtxxdbR6qXwOtUsba7zycxN2WrEKZOi/nrebJeHUwQBEGuIDenNup4PQnwHDmWok8Uq8nKMY37UceRUxbNiW86DyYUWoHI6yHSEQRrq9O1JV5+rMCoxfV6cwoiWGZLokD2LPNyT0/q1bk3hFImr99a+rpMmTn2NDARSP8oSRn46dskc8mGUm8lc=
