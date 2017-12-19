@@ -19,7 +19,7 @@ export default {
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/wallets',
+    publicPath: '/wallets/',
     filename: '[name].[chunkhash].js'
   },
   plugins: [
