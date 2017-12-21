@@ -11,7 +11,7 @@ const Sidebar = () => (
       <a className={s.link} href="/cmp">My Company</a>
       <a className={s.link} href="/cmp/app/search">Search</a>
       <a href="/wallets" className={s.active}>Wallets</a>
-      <a className={s.disabled} href="/contracts">Contracts</a>
+      <a className={s.link} href="/contracts">Contracts</a>
       <a className={s.link} href="/msg">Messenger</a>
     </div>
   </div>
